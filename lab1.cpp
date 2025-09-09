@@ -90,6 +90,10 @@ bool authenticate(User* head, const string& username, const string& password) {
 // Deletes the FIRST node (head) and updates head. No-op if list is empty.
 // Return true if a node was deleted, false otherwise.
 bool removeFront(User*& head) {
+    User * temp = head;
+    delete head;
+
+    
     // TODO: implement
     
     return false;
