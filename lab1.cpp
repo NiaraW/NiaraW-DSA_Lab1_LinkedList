@@ -45,29 +45,30 @@ int main() {
 // Otherwise insert and return true.
 bool insertUser(User*& head, const string& username, const string& password) {
     User * temp = head;
-
         while(temp->next!=nullptr) {
             if(username == temp->username && password == temp->password) { 
                 return false;
             temp = temp->next;
         }
         User * newUser = new User(username, password);
-        return true;
-      
+        return true;  
 
     }
 
-
     // next is null
     // TODO: implement
-   
-    return false;
 }
 
 // Returns pointer to the node with matching username; otherwise nullptr.
 User* findUser(User* head, const string& username) {
+    User * temp = head;
+    while(temp != nullptr) {
+        if(temp->username == username) {
+            return temp;
+        }
+        temp = temp->next;
+    }
     // TODO: implement
-    
     return nullptr;
 }
 
