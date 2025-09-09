@@ -144,10 +144,10 @@ void printUsers(User* head) {
     User * temp = head;
     while(temp!= nullptr) {
         cout << temp ->username << "->";
-        temp = temp ->next
+        temp = temp ->next;
     }
     cout << "NULL" << endl;
     // TODO: implement
-    
+   
 }
 
