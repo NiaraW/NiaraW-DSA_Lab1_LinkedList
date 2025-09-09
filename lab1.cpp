@@ -44,6 +44,21 @@ int main() {
 // If username already exists, do NOT insert a duplicate; return false.
 // Otherwise insert and return true.
 bool insertUser(User*& head, const string& username, const string& password) {
+    User * temp = head;
+
+        while(temp->next!=nullptr) {
+            if(username == temp->username && password == temp->password) { 
+                return false;
+            temp = temp->next;
+        }
+        User * newUser = new User(username, password);
+        return true;
+      
+
+    }
+
+
+    // next is null
     // TODO: implement
    
     return false;
