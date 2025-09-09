@@ -102,8 +102,15 @@ bool removeFront(User*& head) {
 // Deletes the node with matching username (first match only).
 // Return true if a node was found & deleted; false if not found.
 bool removeByUsername(User*& head, const string& username) {
+    User * temp = head;
+    while(temp != nullptr) {
+        if(temp->username == username) {
+            delete temp;
+            return true;
+        }
+    }
     // TODO: implement
-    
+
     return false;
 }
 
