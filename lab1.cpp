@@ -146,6 +146,7 @@ void printUsers(User* head) {
         cout << temp ->username << "->";
         temp = temp ->next
     }
+    cout << "NULL" << endl;
     // TODO: implement
     
 }
