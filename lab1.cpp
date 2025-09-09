@@ -46,15 +46,15 @@ int main() {
 bool insertUser(User*& head, const string& username, const string& password) {
     User * temp = head;
         while(temp->next!=nullptr) {
-            if(username == temp->username && password == temp->password) { 
-                return false;
+            if(username != temp->username && password != temp->password) { 
             temp = temp->next;
         }
         User * newUser = new User(username, password);
         return true;  
 
     }
-
+    return false;
+    // redo this one 
     // next is null
     // TODO: implement
 }
@@ -98,6 +98,7 @@ bool removeFront(User*& head) {
         return true;
     }  
     // TODO: implement
+    // redo do 
     
     return false;
 }
@@ -131,22 +132,20 @@ void clearList(User*& head) {
 
 // Returns number of nodes.
 size_t size(User* head) {
-    User * temp = head;
-     size count = 0;
-    while(temp != nullptr) {
-        count = count + 1;
-
-    }
-    return count;
     // TODO: implement
     
-    
+
     return 0;
 }
 
 // Prints usernames in order, separated by " -> " then " -> NULL".
 // Example: alice -> bob -> charlie -> NULL
 void printUsers(User* head) {
+    User * temp = head;
+    while(temp!= nullptr) {
+        cout << temp ->username << "->";
+        temp = temp ->next
+    }
     // TODO: implement
     
 }
