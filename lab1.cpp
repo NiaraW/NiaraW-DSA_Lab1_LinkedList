@@ -91,9 +91,12 @@ bool authenticate(User* head, const string& username, const string& password) {
 // Return true if a node was deleted, false otherwise.
 bool removeFront(User*& head) {
     User * temp = head;
-    delete head;
-
-    
+    User * del = head;
+    head = head->next;
+    delete temp;
+    if(head != del){
+        return true;
+    }  
     // TODO: implement
     
     return false;
@@ -116,13 +119,27 @@ bool removeByUsername(User*& head, const string& username) {
 
 // Deletes ALL nodes and sets head=nullptr. 
 void clearList(User*& head) {
+    User * temp = head;
+    while(temp!= nullptr) {
+        head = head ->next;
+        delete temp;
+    }
     // TODO: implement
+    head = nullptr;
     
 }
 
 // Returns number of nodes.
 size_t size(User* head) {
+    User * temp = head;
+     size count = 0;
+    while(temp != nullptr) {
+        count = count + 1;
+
+    }
+    return count;
     // TODO: implement
+    
     
     return 0;
 }
