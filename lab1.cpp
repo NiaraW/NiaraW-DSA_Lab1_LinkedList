@@ -54,7 +54,7 @@ int main() {
     printUsers(head);
     insertUser(head, "Nala", "0176");
 
-    bool gone = removeByUsername(head, "Henry");
+    bool gone = removeByUsername(head, "James");
     cout << boolalpha << gone << endl;
     printUsers(head);
     size_t lSize = size(head);
@@ -75,7 +75,7 @@ int main() {
 // If username already exists, do NOT insert a duplicate; return false.
 // Otherwise insert and return true.
 bool insertUser(User*& head, const string& username, const string& password) {
-
+    //Insert at end: O(n)
     User * newUser = new User(username, password);
     if(head == nullptr) { 
         head = newUser; 
@@ -93,11 +93,12 @@ bool insertUser(User*& head, const string& username, const string& password) {
     temp->next = newUser;
     return true;  
 
-    // TODO: implement
 }
 
 // Returns pointer to the node with matching username; otherwise nullptr.
 User* findUser(User* head, const string& username) {
+    //Find: O(n)
+    // Need to search
     User * temp = head;
     while(temp != nullptr) {
         if(temp->username == username) {
@@ -105,12 +106,13 @@ User* findUser(User* head, const string& username) {
         }
         temp = temp->next;
     }
-    // TODO: implement
     return nullptr;
 }
 
 // Returns true if (username, password) matches an existing node; false otherwise.
 bool authenticate(User* head, const string& username, const string& password) {
+    //Authentiate: O(n)
+    //Need to search
     User * temp = head;
     while(temp != nullptr) {
         if(temp->password == password && temp->username == username) {
@@ -119,30 +121,35 @@ bool authenticate(User* head, const string& username, const string& password) {
         temp = temp->next;
     }
     return false;
-    // TODO: implement
 }
 
 // Deletes the FIRST node (head) and updates head. No-op if list is empty.
 // Return true if a node was deleted, false otherwise.
 bool removeFront(User*& head) {
+    //Front Deletion: O(1)
     if(head == nullptr) {
-        return 0;
+        return false;
     } 
     User * temp = head;
+    User * front = head;
     head = head->next;
     delete temp;
-    return true;  
-    // TODO: implement
-    // redo do 
-    
-    return false;
+    if(head != front) {
+        return true; 
+
+    } else {
+        return false;
+    }
+
 }
 
 // Deletes the node with matching username (first match only).
 // Return true if a node was found & deleted; false if not found.
 bool removeByUsername(User*& head, const string& username) {
+    //Remove: O(n)
+    //Need to search for the target
     User * temp = head;
-    User * prevNode = nullptr;
+    User * prevNode = nullptr; // important to determine whether or not pointer is head
     while(temp != nullptr) {
         if(temp->username == username) {
             if(prevNode == nullptr) {
@@ -157,12 +164,13 @@ bool removeByUsername(User*& head, const string& username) {
         prevNode = temp;
         temp = temp->next;
     }
-    // TODO: implement
     return false;
 }
 
 // Deletes ALL nodes and sets head=nullptr. 
 void clearList(User*& head) {
+    //Delete all: O(1)
+    //Delete from beginning
     User * temp = head;
     User * next;
     while(temp!= nullptr) {
@@ -170,13 +178,14 @@ void clearList(User*& head) {
         delete temp;
         temp = next;
     }
-    // TODO: implement
     head = nullptr;
     
 }
 
 // Returns number of nodes.
 size_t size(User* head) {
+    // Size: O(n)
+    // Traversal is needed
     User * temp = head;
     size_t count = 0;
     while(temp != nullptr) {
@@ -184,8 +193,6 @@ size_t size(User* head) {
         temp = temp->next;
 
     }
-    // TODO: implement
-    
     return count;
 
 }
@@ -193,12 +200,13 @@ size_t size(User* head) {
 // Prints usernames in order, separated by " -> " then " -> NULL".
 // Example: alice -> bob -> charlie -> NULL
 void printUsers(User* head) {
+    //Print: O(n)
+    //Traversal
     User * temp = head;
     while(temp!= nullptr) {
         cout << temp ->username << "->";
         temp = temp ->next;
     }
     cout << "NULL" << endl;
-    // TODO: implement
    
 }
