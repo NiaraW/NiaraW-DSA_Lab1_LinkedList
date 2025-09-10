@@ -44,18 +44,22 @@ int main() {
 // If username already exists, do NOT insert a duplicate; return false.
 // Otherwise insert and return true.
 bool insertUser(User*& head, const string& username, const string& password) {
-    User * temp = head;
-        while(temp->next!=nullptr) {
+
+    User * newUser = new User(username, password);
+    if (head == nullptr) { 
+        head = newUser; 
+        return true; 
+    } 
+     User * temp = head;
+        while(temp->next!= nullptr) {
             if(username != temp->username && password != temp->password) { 
             temp = temp->next;
         }
-        User * newUser = new User(username, password);
+        temp->next = newUser;
         return true;  
 
     }
     return false;
-    // redo this one 
-    // next is null
     // TODO: implement
 }
 
@@ -90,13 +94,13 @@ bool authenticate(User* head, const string& username, const string& password) {
 // Deletes the FIRST node (head) and updates head. No-op if list is empty.
 // Return true if a node was deleted, false otherwise.
 bool removeFront(User*& head) {
+    if(head == nullptr) {
+        return;
+    } 
     User * temp = head;
-    User * del = head;
     head = head->next;
     delete temp;
-    if(head != del){
-        return true;
-    }  
+    return true;  
     // TODO: implement
     // redo do 
     
@@ -121,9 +125,11 @@ bool removeByUsername(User*& head, const string& username) {
 // Deletes ALL nodes and sets head=nullptr. 
 void clearList(User*& head) {
     User * temp = head;
+    User * next;
     while(temp!= nullptr) {
-        head = head ->next;
+        next = temp->next;
         delete temp;
+        temp = next;
     }
     // TODO: implement
     head = nullptr;
@@ -132,10 +138,17 @@ void clearList(User*& head) {
 
 // Returns number of nodes.
 size_t size(User* head) {
+    User * temp = head;
+    size_t count = 0;
+    while(temp != nullptr) {
+        count = count + 1;
+        temp = temp->next;
+
+    }
     // TODO: implement
     
 
-    return 0;
+    return count;
 }
 
 // Prints usernames in order, separated by " -> " then " -> NULL".
